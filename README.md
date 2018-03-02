@@ -14,48 +14,55 @@ npm install --save-dev react-test-context-provider
 ## Usage
 
 ```javascript
-var getContextProvider = require('react-test-context-provider')
-var contextObject = {color: 'blue'} // the context you want to provide to the children components
-var reactElement = getElementWithContext(contextObject, <ComponentThatNeedsContext />) // returns the react element as rendered with the given context
+var getContextProvider = require('react-test-context-provider');
+var contextObject = { color: 'blue' }; // the context you want to provide to the children components
+var reactElement = getElementWithContext(contextObject, <ComponentThatNeedsContext />); // returns the react element as rendered with the given context
 ```
 
-In this example, I'm using the [Jest](http://facebook.github.io/jest/) testing framework.
+In this example, I'm using the [Jest][jest] testing framework.
 
 **Button.js**
 
 ```javascript
-import React, {PropTypes} from 'react'
-export default function Button({children}, {color}) {
+import React, { PropTypes } from 'react';
+export default function Button({ children }, { color }) {
   // function components receive context as the second argument
-  return <button style={{background: color}}>{children}</button>
+  return <button style={{ background: color }}>{children}</button>;
 }
-Button.propTypes = {children: PropTypes.any.isRequired}
-Button.contextTypes = {color: PropTypes.string}
+Button.propTypes = { children: PropTypes.any.isRequired };
+Button.contextTypes = { color: PropTypes.string };
 ```
 
 **Button.test.js**
 
 ```javascript
-import React from 'react'
-import renderer from 'react-test-renderer'
-import getElementWithContext from 'react-test-context-provider'
-import Button from './Button'
+import React from 'react';
+import renderer from 'react-test-renderer';
+import getElementWithContext from 'react-test-context-provider';
+import Button from './Button';
 
 test('styles the button with a background of the context color', () => {
-  const element = getElementWithContext({color: 'blue'}, <Button>Click Me</Button>)
-  const component = renderer.create(element)
-  expect(component).toMatchSnapshot()
+  const element = getElementWithContext({ color: 'blue' }, <Button>Click Me</Button>);
+  const component = renderer.create(element);
+  expect(component).toMatchSnapshot();
 
   // NOTE: This API is also curried, so you can provide the context first and the children later:
   // import getContextProvider from 'react-test-context-provider'
   // const getElementWithBlueColorContext = getContextProvider({color: 'blue'})
   // const element = getElementWithBlueColorContext(<Button>Click Me</Button>)
-})
+});
 ```
 
-## LICENSE
+## Contributing
 
-MIT
+I'm thankful for any contributions. By contributing you agree to abide by the Code of Conduct in the [Contributing Guidelines][contributing].
+
+## License
+
+[MIT][license]
 
 [npm]: https://www.npmjs.com/
 [node]: https://nodejs.org
+[jest]: http://facebook.github.io/jest/
+[contributing]: https://github.com/alanbsmith/react-test-context-provider/blob/master/.github/CONTRIBUTING.md
+[license]: https://github.com/alanbsmith/react-test-context-provider/blob/master/LICENSE

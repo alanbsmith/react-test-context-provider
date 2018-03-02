@@ -1,0 +1,66 @@
+{
+  root: true,
+  parser: 'babel-eslint',
+  plugins: ['react', 'jsx-a11y'],
+  extends: 'airbnb',
+  env: {
+    browser: true,
+    commonjs: true,
+    es6: true,
+    jest: true,
+    node: true,
+  },
+  parserOptions: {
+    ecmaVersion: 6,
+    sourceType: 'module',
+    ecmaFeatures: {
+      jsx: true,
+      generators: true,
+      experimentalObjectRestSpread: true,
+    },
+  },
+  settings: {
+    'import/resolver': {
+      webpack: {
+        config: './config/webpack/webpack.config.js',
+      },
+    },
+  },
+  rules: {
+    'arrow-parens': ['error', 'always'],
+    'comma-dangle': ['error', 'always-multiline'],
+    'function-paren-newline': 0,
+    'import/first': 0,
+    'import/no-duplicates': 0,
+    'import/no-extraneous-dependencies': 0,
+    'import/no-named-as-default': 0,
+    'import/no-webpack-loader-syntax': 0,
+    'max-len': [
+      'error',
+      {
+        code: 100,
+        tabWidth: 2,
+        ignoreStrings: true,
+        ignoreTemplateLiterals: true,
+      },
+    ],
+    'no-console': 1,
+    'no-param-reassign': 0,
+    'no-unused-vars': [
+      'error',
+      {
+        varsIgnorePattern: '^_',
+        argsIgnorePattern: '^_',
+      },
+    ],
+    'react/jsx-filename-extension': [
+      1,
+      {
+        extensions: [
+          '.js',
+        ],
+      },
+    ],
+    'react/no-array-index-key': 0,
+  },
+}

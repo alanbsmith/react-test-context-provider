@@ -1,24 +1,68 @@
 {
   "name": "react-test-context-provider",
-  "version": "2.1.1",
+  "version": "2.2.1",
   "description": "A function that allows you to specify context to pass to a child component (intended for testing only)",
-  "main": "index.js",
+  "main": "build/index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "build": "babel lib -d build",
+    "build:watch": "babel lib -w -d build",
+    "lint": "eslint lib/**",
+    "precommit": "lint-staged",
+    "prepublishOnly": "npm run build",
+    "review": "npm run lint && npm test",
+    "test": "jest",
+    "test:coverage:report": "open ./coverage/lcov-report/index.html",
+    "test:watch": "jest --watch"
+  },
   "keywords": [
     "react",
     "testing",
     "context"
   ],
   "author": "Kent C. Dodds <kent@doddsfamily.us> (http://kentcdodds.com/)",
+  "contributors": [
+    "Kent C. Dodds <kent@doddsfamily.us> (http://kentcdodds.com/)",
+    "Alan Smith <a.bax.smith@gmail.com> (https://alanbsmith.github.io)"
+  ],
   "license": "MIT",
   "peerDependencies": {
-    "react": ">= 9"
+    "react": ">= 15"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kentcdodds/react-test-context-provider.git"
+    "url": "git+https://github.com/alanbsmith/react-test-context-provider.git"
   },
   "bugs": {
-    "url": "https://github.com/kentcdodds/react-test-context-provider/issues"
+    "url": "https://github.com/alanbsmith/react-test-context-provider/issues"
   },
-  "homepage": "https://github.com/kentcdodds/react-test-context-provider#readme"
+  "homepage": "https://github.com/alanbsmith/react-test-context-provider#readme",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-eslint": "^8.2.2",
+    "babel-loader": "^7.1.3",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "eslint": "^4.18.1",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-import": "^2.9.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.7.0",
+    "husky": "^0.14.3",
+    "jest": "^22.4.2",
+    "lint-staged": "^7.0.0",
+    "prettier": "^1.11.1",
+    "react": "^16.2.0",
+    "react-test-renderer": "^16.2.0"
+  },
+  "lint-staged": {
+    "*.{js,md}": [
+      "prettier --write",
+      "git add"
+    ]
+  }
 }
